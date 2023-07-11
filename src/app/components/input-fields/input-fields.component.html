@@ -1,0 +1,32 @@
+<mat-card>
+  <form [formGroup]="myForm" (ngSubmit)="addData()">
+
+    <mat-card-content class="form-inline">
+      <div class="form-field">
+        <mat-form-field appearance="outline" style="width: 270px">
+          <mat-label class="input-box">Body</mat-label>
+          <input class="input-box" formControlName="body" matInput placeholder="">
+          <mat-error *ngIf="bodyControl.hasError('required')">Body is required.</mat-error>
+          <mat-error *ngIf="bodyControl.hasError('email') && myForm.get('type')?.value === 'email'">Invalid email format.</mat-error>
+  <mat-error *ngIf="bodyControl.hasError('pattern') && myForm.get('type')?.value === 'number'">Enter number only.</mat-error>
+
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-form-field>
+          <mat-label>Choose</mat-label>
+          <mat-select (ngModelChange)="updateValidation()" formControlName="type">
+            <mat-option value="text">Text</mat-option>
+            <mat-option value="number">Number</mat-option>
+            <mat-option value="email">Email</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-field">
+        <mat-card-actions>
+          <button [disabled]="isButtonClicked || myForm.invalid" class="set-margin-btn" type="submit" mat-raised-button color="primary">{{isButtonClicked? 'Saved': 'SAVE'}}</button>
+        </mat-card-actions>
+      </div>
+    </mat-card-content>
+  </form>
+  </mat-card>

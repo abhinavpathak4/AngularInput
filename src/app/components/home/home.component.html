@@ -1,0 +1,43 @@
+<div class="main center">
+
+
+  <div class="div-1">
+    <mat-card class="example-card">
+      <h2 class="text-center">Data Saved</h2>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button color="accent" (click)="saveToDb()">Save To Db</button>
+      </mat-card-actions>
+      <ul *ngFor="let data of list; let i = index">
+
+        <mat-form-field appearance="outline" style="width: 270px">
+          <mat-label class="input-box">Type</mat-label>
+          <input type="text" [(ngModel)]="data.type" class="input-box" [disabled]="true" matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 270px">
+          <mat-label class="input-box">Body</mat-label>
+          <input type="text" [(ngModel)]="data.body" class="input-box" matInput [disabled]="!editModeArray[i]">
+        </mat-form-field>
+
+
+        <button mat-button (click)="toggleEditMode(i)" color="primary"> {{ editModeArray[i] ? 'Cancel' : 'Edit'
+          }}</button>
+        <button mat-button (click)="update(data)" [disabled]="!editModeArray[i]" color="primary">Update</button>
+        <button (click)="delete(data)" mat-mini-fab color="warn">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </ul>
+    </mat-card>
+  </div>
+  <hr>
+  <div class="div-2">
+    <h2 class="text-center">Add New Records</h2>
+    <mat-card-actions align="end">
+      <button class="btn-margin" mat-raised-button color="accent" (click)="addMoreFields()">Add Input Fields</button>
+      <button mat-raised-button (click)="saveRecords()" mat-button color="warn">Save Records</button>
+    </mat-card-actions>
+    <div>
+      <app-input-fields *ngFor="let inputField of inputFields"></app-input-fields>
+    </div>
+  </div>
+</div>

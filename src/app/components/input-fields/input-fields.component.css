@@ -1,0 +1,25 @@
+/* .input-box { 
+     display: inline;
+    width: 80px;
+    height: 100px;
+    padding: 5px; 
+} */
+
+.form-inline {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+/* .form-field {
+    margin-right: 150px;
+}
+  
+
+.set-margin{
+    margin-bottom: 20px;
+}
+
+.set-margin-btn{
+    margin-left: 10px;
+} */
